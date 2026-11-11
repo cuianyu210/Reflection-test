@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Demo">
+      <UniqueIdentifier>{1a2b3c4d-5e6f-7081-92a3-b4c5d6e7f801}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Runtime">
+      <UniqueIdentifier>{2b3c4d5e-6f70-8192-a3b4-c5d6e7f80213}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated">
+      <UniqueIdentifier>{3c4d5e6f-7081-92a3-b4c5-d6e7f8031425}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Script">
+      <UniqueIdentifier>{4d5e6f70-8192-a3b4-c5d6-e7f804153647}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HelloWorld.h">
+      <Filter>Demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\CoreMinimal.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\FString.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\ObjectMacros.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\UClass.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\UObject.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\ScriptVM.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\Utf8.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Runtime\GarbageCollector.h">
+      <Filter>Runtime</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HelloWorld.cpp">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Runtime\UClass.cpp">
+      <Filter>Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Runtime\UObject.cpp">
+      <Filter>Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Runtime\ScriptVM.cpp">
+      <Filter>Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Runtime\GarbageCollector.cpp">
+      <Filter>Runtime</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Intermediate\Generated\HelloWorld.gen.cpp">
+      <Filter>Generated</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Development\Src\HelloWorld\Classes\HelloWorld.uc">
+      <Filter>Script</Filter>
+    </None>
+    <None Include="..\..\Development\Src\HelloWorld\Classes\Greeter.uc">
+      <Filter>Script</Filter>
+    </None>
+  </ItemGroup>
+</Project>

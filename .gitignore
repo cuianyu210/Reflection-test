@@ -1,0 +1,13 @@
+Binaries/
+Intermediate/
+Script/*.u
+.vs/
+.idea/
+*.user
+*.suo
+*.obj
+*.exe
+*.pdb
+*.ilk
+Tools/**/bin/
+Tools/**/obj/

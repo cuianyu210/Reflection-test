@@ -1,0 +1,35 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+    <BuildType Name="Release" />
+    <Platform Name="x64" />
+    <Platform Name="Any CPU" />
+  </Configurations>
+  <Folder Name="/Scripts/">
+    <File Path="Generate.bat" />
+    <File Path="Build.bat" />
+  </Folder>
+  <Folder Name="/Demo/">
+    <Project Path="Source/Demo/HelloWorld.vcxproj">
+      <Platform Solution="*|Any CPU" Project="x64" />
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
+  <Folder Name="/Development/Src/HelloWorld/Classes/">
+    <File Path="Development/Src/HelloWorld/Classes/HelloWorld.uc" />
+    <File Path="Development/Src/HelloWorld/Classes/Greeter.uc" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="Tools/MiniUHT/MiniUHT.csproj">
+      <Platform Solution="*|x64" Project="Any CPU" />
+    </Project>
+    <Project Path="Tools/MiniUBT/MiniUBT.csproj">
+      <Platform Solution="*|x64" Project="Any CPU" />
+    </Project>
+    <Project Path="Tools/UCC/UCC.csproj">
+      <Platform Solution="*|x64" Project="Any CPU" />
+    </Project>
+  </Folder>
+</Solution>
+
+

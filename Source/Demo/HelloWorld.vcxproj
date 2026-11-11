@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{A7C3E4B1-9F12-4D88-8C01-2E6B9A4D7F10}</ProjectGuid>
+    <RootNamespace>HelloWorld</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <RepoRoot Condition="'$(SolutionDir)' != '' and '$(SolutionDir)' != '*Undefined*'">$(SolutionDir)</RepoRoot>
+    <RepoRoot Condition="'$(RepoRoot)' == ''">$(MSBuildThisFileDirectory)..\..\</RepoRoot>
+    <OutDir>$(RepoRoot)Binaries\</OutDir>
+    <IntDir>$(RepoRoot)Intermediate\Obj\$(Configuration)\</IntDir>
+    <TargetName>HelloWorld</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(RepoRoot)Source\Runtime;$(RepoRoot)Source\Demo;$(RepoRoot)Intermediate\Generated;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <ProgramDataBaseFileName>$(IntDir)HelloWorld.pdb</ProgramDataBaseFileName>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(IntDir)HelloWorld.pdb</ProgramDatabaseFile>
+      <ImportLibrary>$(IntDir)$(TargetName).lib</ImportLibrary>
+      <AdditionalOptions>/ILK:"$(IntDir)$(TargetName).ilk" %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <PreBuildEvent>
+      <Command>set Platform=
+dotnet run --project "$(RepoRoot)Tools\MiniUBT\MiniUBT.csproj" -c Release -- generate</Command>
+      <Message>MiniUBT generate (UHT + UCC make)</Message>
+    </PreBuildEvent>
+    <PostBuildEvent>
+      <Command>for %%F in ("$(OutDir)*") do @if /I not "%%~xF"==".exe" if /I not "%%~xF"==".dll" del /q "%%F"</Command>
+      <Message>Keep Binaries as exe/dll only</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="HelloWorld.h" />
+    <ClInclude Include="..\Runtime\CoreMinimal.h" />
+    <ClInclude Include="..\Runtime\FString.h" />
+    <ClInclude Include="..\Runtime\ObjectMacros.h" />
+    <ClInclude Include="..\Runtime\UClass.h" />
+    <ClInclude Include="..\Runtime\UObject.h" />
+    <ClInclude Include="..\Runtime\ScriptVM.h" />
+    <ClInclude Include="..\Runtime\Utf8.h" />
+    <ClInclude Include="..\Runtime\GarbageCollector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="HelloWorld.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="..\Runtime\UClass.cpp" />
+    <ClCompile Include="..\Runtime\UObject.cpp" />
+    <ClCompile Include="..\Runtime\ScriptVM.cpp" />
+    <ClCompile Include="..\Runtime\GarbageCollector.cpp" />
+    <ClCompile Include="..\..\Intermediate\Generated\HelloWorld.gen.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Development\Src\HelloWorld\Classes\HelloWorld.uc" />
+    <None Include="..\..\Development\Src\HelloWorld\Classes\Greeter.uc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
